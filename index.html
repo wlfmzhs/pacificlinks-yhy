@@ -1,0 +1,1621 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>퍼시픽링스 코리아 | 프리미엄 골프 멤버십</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+
+  :root{
+    --navy:#0a1830;
+    --navy2:#0f2647;
+    --blue:#4f8fd6;
+    --blue-light:#8fc1f0;
+    --ink:#13202f;
+    --gray:#6b7785;
+    --bg:#f4f6f9;
+    --line:#e3e8ee;
+  }
+
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family:'Noto Sans KR', sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  img{ max-width:100%; display:block; }
+  .container{ max-width:560px; margin:0 auto; padding:0 24px; }
+
+  a{ text-decoration:none; color:inherit; }
+  button{ font-family:inherit; cursor:pointer; border:none; }
+
+  /* ============ HEADER ============ */
+  .topbar{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 20px;
+    background:rgba(10,24,48,0.0);
+    transition:background .3s ease, box-shadow .3s ease, padding .3s ease;
+  }
+  .topbar.scrolled{
+    background:rgba(10,24,48,0.92);
+    backdrop-filter:blur(8px);
+    box-shadow:0 2px 18px rgba(0,0,0,0.15);
+    padding:10px 20px;
+  }
+  .topbar-logo{ height:30px; transition:height .3s ease; }
+  .topbar.scrolled .topbar-logo{ height:26px; }
+  .topbar-call{
+    display:flex; align-items:center; gap:6px;
+    background:var(--blue);
+    color:#fff; font-size:13px; font-weight:700;
+    padding:9px 16px; border-radius:30px;
+    box-shadow:0 4px 14px rgba(79,143,214,0.4);
+  }
+  .topbar-call svg{ width:14px; height:14px; fill:#fff; }
+
+  /* ============ HERO ============ */
+  .hero{
+    min-height:100svh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; color:#fff;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(79,143,214,0.35), transparent 55%),
+      linear-gradient(165deg, var(--navy) 0%, #061224 70%, #03070f 100%);
+    padding:100px 24px 60px;
+    position:relative; overflow:hidden;
+  }
+  .hero::before{
+    content:''; position:absolute; inset:0;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.25) 50%, transparent 51%),
+      radial-gradient(1px 1px at 80% 60%, rgba(255,255,255,0.18) 50%, transparent 51%),
+      radial-gradient(1px 1px at 60% 85%, rgba(255,255,255,0.15) 50%, transparent 51%),
+      radial-gradient(1px 1px at 35% 70%, rgba(255,255,255,0.12) 50%, transparent 51%);
+    pointer-events:none;
+  }
+  .hero-logo{ width:150px; margin:0 auto 36px; position:relative; z-index:1; }
+  .hero-eyebrow{
+    font-size:11px; letter-spacing:4px; text-transform:uppercase;
+    color:var(--blue-light); font-weight:700; margin-bottom:18px;
+    position:relative; z-index:1;
+  }
+  .hero h1{
+    font-size:38px; font-weight:900; line-height:1.35; letter-spacing:-1px;
+    margin-bottom:18px; position:relative; z-index:1;
+  }
+  .hero h1 span{ color:var(--blue-light); }
+  .hero p{
+    font-size:14px; color:rgba(255,255,255,0.6); font-weight:300;
+    margin-bottom:42px; position:relative; z-index:1;
+  }
+  .hero-keyword-wrap{
+    height:56px; margin-bottom:42px; position:relative; z-index:1;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .hero-keyword{
+    font-size:38px; font-weight:900; line-height:1.35; letter-spacing:-1px;
+    color:var(--blue-light); text-shadow:0 4px 20px rgba(79,143,214,0.5);
+    transition:opacity .3s ease, transform .3s ease;
+  }
+  .hero-keyword.fade{ opacity:0; transform:translateY(4px); }
+  .btn-primary{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--blue); color:#fff;
+    font-size:16px; font-weight:800;
+    padding:18px 40px; border-radius:50px;
+    box-shadow:0 10px 30px rgba(79,143,214,0.45);
+    position:relative; z-index:1;
+    transition:transform .15s ease;
+  }
+  .btn-primary:active{ transform:scale(0.97); }
+  .btn-primary svg{ width:18px; height:18px; fill:#fff; }
+  .hero-actions{
+    display:flex; gap:10px; width:100%; max-width:420px;
+    position:relative; z-index:1;
+  }
+  .hero-actions .btn-primary{
+    flex:1; justify-content:center; gap:8px;
+    padding:17px 12px; font-size:15px;
+  }
+  .hero-scroll{
+    position:absolute; bottom:28px; left:50%; transform:translateX(-50%);
+    font-size:10px; letter-spacing:3px; color:rgba(255,255,255,0.4);
+    text-transform:uppercase; z-index:1;
+    animation:bounce 2.2s infinite;
+  }
+  .hero-agent{
+    display:flex; align-items:center; gap:10px;
+    background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18);
+    border-radius:50px; padding:6px 18px 6px 6px; margin-bottom:28px;
+    position:relative; z-index:1; backdrop-filter:blur(4px);
+  }
+  .hero-agent img{ width:38px; height:38px; border-radius:50%; object-fit:cover; }
+  .hero-agent-text{ text-align:left; }
+  .hero-agent-role{ font-size:10px; color:var(--blue-light); letter-spacing:1px; }
+  .hero-agent-name{ font-size:13px; font-weight:800; color:#fff; }
+  .hero-agent-tel{ color:var(--blue-light); text-decoration:none; font-weight:800; margin-left:6px; }
+  @keyframes bounce{
+    0%,100%{ transform:translate(-50%,0); opacity:.4; }
+    50%{ transform:translate(-50%,6px); opacity:.9; }
+  }
+
+  /* ============ SECTION GENERIC ============ */
+  .section{ padding:72px 0; }
+  .section.dark{
+    background:linear-gradient(165deg, var(--navy2), var(--navy));
+    color:#fff;
+  }
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  .eyebrow-tag{
+    display:inline-block; font-size:11px; font-weight:800; letter-spacing:3px;
+    color:var(--blue); text-transform:uppercase; margin-bottom:10px;
+  }
+  .section.dark .eyebrow-tag{ color:var(--blue-light); }
+  .section-title{
+    font-size:28px; font-weight:900; letter-spacing:-0.5px; margin-bottom:14px;
+    line-height:1.4;
+  }
+  .section-title b{ color:var(--blue); }
+  .section.dark .section-title b{ color:var(--blue-light); }
+  .section-desc{ font-size:14px; color:var(--gray); margin-bottom:36px; }
+  .section.dark .section-desc{ color:rgba(255,255,255,0.55); }
+
+  /* ============ STATS ============ */
+  .stats-grid{
+    display:flex; flex-direction:column; gap:12px; margin-bottom:36px;
+  }
+  .stat-group{
+    display:grid; grid-template-columns:1fr 1fr; gap:10px;
+    background:rgba(79,143,214,0.06);
+    border:1px solid rgba(79,143,214,0.18);
+    border-radius:18px; padding:8px;
+  }
+  .stat-card{
+    text-align:center; padding:18px 8px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:12px;
+    transition:transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s ease, background .25s ease;
+  }
+  .stat-card:active{
+    transform:scale(1.07) translateY(-6px);
+    box-shadow:0 14px 30px rgba(79,143,214,0.35);
+    background:rgba(255,255,255,0.1);
+  }
+  @media (hover:hover){
+    .stat-card:hover{
+      transform:scale(1.07) translateY(-6px);
+      box-shadow:0 14px 30px rgba(79,143,214,0.35);
+      background:rgba(255,255,255,0.1);
+    }
+  }
+  .stat-num{ font-size:26px; font-weight:900; color:var(--blue-light); letter-spacing:-1px; }
+  .stat-label{ font-size:11px; color:rgba(255,255,255,0.55); margin-top:6px; letter-spacing:0.5px; }
+
+  .badge-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .badge{
+    font-size:12px; font-weight:700; color:#fff;
+    background:rgba(79,143,214,0.18);
+    border:1px solid rgba(79,143,214,0.4);
+    padding:8px 16px; border-radius:30px;
+  }
+
+  /* ============ MEMBERSHIP BENEFITS ============ */
+  .benefit-head{ margin-top:44px; margin-bottom:22px; }
+  .benefit-grid{ display:grid; grid-template-columns:1fr; gap:18px; }
+  .benefit-card{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:18px; overflow:hidden;
+  }
+  .benefit-img{
+    width:100%; aspect-ratio:16/9; position:relative;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    background:rgba(255,255,255,0.03);
+    border-bottom:1px dashed rgba(255,255,255,0.15);
+    color:rgba(255,255,255,0.3); font-size:13px; line-height:1.7; letter-spacing:0.5px;
+  }
+  .benefit-img img{ width:100%; height:100%; object-fit:cover; }
+  .benefit-body{ padding:22px 24px 24px; }
+  .benefit-no{ font-size:12px; font-weight:800; color:var(--blue-light); letter-spacing:1px; margin-bottom:9px; }
+  .benefit-title{ font-size:20px; font-weight:800; line-height:1.35; margin-bottom:10px; letter-spacing:-0.5px; color:#fff; }
+  .benefit-desc{ font-size:14px; color:rgba(255,255,255,0.62); line-height:1.7; }
+
+  /* ============ MEMBERSHIP CARDS ============ */
+  .mem-card{
+    background:#fff; border:1px solid var(--line); border-radius:18px;
+    padding:26px 24px; margin-bottom:16px;
+    box-shadow:0 4px 20px rgba(10,24,48,0.04);
+  }
+  .mem-title{ font-size:21px; font-weight:900; letter-spacing:-0.5px; margin-bottom:8px; }
+  .mem-desc{ font-size:13px; color:var(--gray); margin-bottom:14px; line-height:1.7; }
+  .mem-badges{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+  .mem-badge{
+    font-size:12px; font-weight:700; color:var(--blue);
+    background:rgba(79,143,214,0.1);
+    border:1px solid rgba(79,143,214,0.3);
+    padding:7px 14px; border-radius:30px;
+  }
+
+  .category-heading{
+    font-size:12px; font-weight:800; letter-spacing:3px; text-transform:uppercase;
+    color:var(--blue); margin:36px 0 14px; padding-left:2px;
+  }
+  .category-heading:first-of-type{ margin-top:0; }
+
+  .mem-spec-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:10px 16px;
+    background:var(--bg); border-radius:10px; padding:16px;
+    margin:0 0 16px;
+  }
+  .spec{ display:flex; flex-direction:column; gap:3px; }
+  .spec-label{ font-size:10px; color:var(--gray); letter-spacing:1px; }
+  .spec-val{ font-size:15px; font-weight:900; color:var(--ink); letter-spacing:-0.3px; }
+  .mem-actions{ display:flex; gap:8px; }
+  .btn-outline{
+    flex:1; text-align:center; padding:13px; border-radius:10px;
+    border:1.5px solid var(--navy); font-size:13px; font-weight:700;
+    color:var(--navy); background:#fff; transition:background .15s ease;
+  }
+  .btn-outline:active{ background:var(--bg); }
+  .btn-fill{
+    flex:1; text-align:center; padding:13px; border-radius:10px;
+    background:var(--blue); color:#fff; font-size:13px; font-weight:700;
+    display:flex; align-items:center; justify-content:center; gap:6px;
+  }
+  .btn-fill svg{ width:13px; height:13px; fill:#fff; }
+
+  /* ============ LIGHTBOX ============ */
+  .lightbox{
+    position:fixed; inset:0; background:rgba(5,12,24,0.92); z-index:1000;
+    display:none; align-items:center; justify-content:center; padding:20px;
+    backdrop-filter:blur(4px);
+  }
+  .lightbox.open{ display:flex; }
+  .lightbox img{
+    max-width:100%; max-height:85vh; border-radius:10px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.5);
+  }
+  .lightbox-close{
+    position:absolute; top:18px; right:20px;
+    width:42px; height:42px; border-radius:50%;
+    background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2);
+    color:#fff; font-size:22px; font-weight:300;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .lightbox-hint{
+    position:absolute; bottom:24px; left:50%; transform:translateX(-50%);
+    color:rgba(255,255,255,0.5); font-size:11px; letter-spacing:1px;
+  }
+
+  /* ============ PROFILE ============ */
+  .profile-card{
+    background:linear-gradient(165deg, var(--navy2), var(--navy));
+    border-radius:22px; overflow:hidden; color:#fff;
+    box-shadow:0 20px 50px rgba(10,24,48,0.25);
+  }
+  .profile-img{ width:100%; aspect-ratio:1/1; object-fit:cover; object-position:center 12%; }
+  .profile-body{ padding:28px 26px 30px; }
+  .profile-role{ font-size:12px; letter-spacing:2px; color:var(--blue-light); font-weight:700; margin-bottom:6px; text-transform:uppercase; }
+  .profile-name{ font-size:26px; font-weight:900; margin-bottom:14px; letter-spacing:-0.5px; }
+  .profile-desc{ font-size:13px; color:rgba(255,255,255,0.6); line-height:1.8; margin-bottom:26px; }
+  .profile-actions{ display:flex; flex-direction:column; gap:10px; }
+  .profile-call{
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    background:var(--blue); color:#fff; font-size:17px; font-weight:800;
+    padding:18px; border-radius:14px;
+    box-shadow:0 10px 26px rgba(79,143,214,0.4);
+  }
+  .profile-call svg{ width:18px; height:18px; fill:#fff; }
+  .profile-sub-actions{ display:flex; gap:10px; }
+  .profile-sms{
+    flex:1; display:flex; align-items:center; justify-content:center; gap:8px;
+    border:1px solid rgba(255,255,255,0.25); color:#fff; font-size:13px; font-weight:700;
+    padding:14px; border-radius:12px;
+  }
+  .profile-sms svg{ width:14px; height:14px; fill:#fff; }
+  .profile-tel-num{ text-align:center; font-size:18px; font-weight:800; color:#fff; margin-top:14px; letter-spacing:1px; }
+
+  /* ============ REQUEST FORM (안내자료 받기) ============ */
+  .request-card{
+    background:#fff; border:1px solid var(--line);
+    border-radius:22px; padding:30px 24px 28px;
+    box-shadow:0 18px 44px rgba(10,24,48,0.10);
+  }
+  .req-field{ margin-bottom:16px; text-align:left; }
+  .req-field label{
+    display:block; font-size:13px; font-weight:700; color:var(--ink); margin-bottom:8px;
+  }
+  .req-field label .req-star{ color:#e0524a; margin-left:3px; }
+  .req-field input,
+  .req-field select{
+    width:100%; font-family:inherit; font-size:15px; color:var(--ink);
+    background:var(--bg); border:1px solid var(--line); border-radius:12px;
+    padding:15px 16px; outline:none; -webkit-appearance:none; appearance:none;
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .req-field input:focus,
+  .req-field select:focus{ border-color:var(--blue); background:#fff; }
+  .req-field input::placeholder{ color:#aab2bd; }
+  .req-field select{
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236b7785'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat:no-repeat; background-position:right 14px center; padding-right:42px;
+  }
+  .req-field select:invalid{ color:#aab2bd; }
+  .req-submit{
+    width:100%; display:flex; align-items:center; justify-content:center; gap:10px;
+    background:var(--blue); color:#fff; font-size:17px; font-weight:800;
+    padding:18px; border-radius:14px; margin-top:8px;
+    box-shadow:0 10px 26px rgba(79,143,214,0.4);
+    transition:transform .15s ease, opacity .15s ease;
+  }
+  .req-submit:active{ transform:scale(0.98); }
+  .req-submit:disabled{ opacity:.6; }
+  .req-submit svg{ width:18px; height:18px; fill:#fff; }
+  .req-privacy{
+    font-size:11px; color:var(--gray); line-height:1.7; margin-top:16px; text-align:center;
+  }
+  .req-success{
+    display:none; text-align:center; padding:24px 6px;
+  }
+  .req-success.show{ display:block; }
+  .req-success .check{
+    width:64px; height:64px; margin:0 auto 18px; border-radius:50%;
+    background:var(--blue); display:flex; align-items:center; justify-content:center;
+  }
+  .req-success .check svg{ width:34px; height:34px; fill:#fff; }
+  .req-success-title{ font-size:20px; font-weight:900; margin-bottom:8px; color:var(--ink); }
+  .req-success-desc{ font-size:14px; color:var(--gray); line-height:1.7; }
+
+  /* ============ FAQ ============ */
+  .faq-tabs{
+    display:flex; gap:8px; overflow-x:auto; margin-bottom:24px;
+    -ms-overflow-style:none; scrollbar-width:none;
+  }
+  .faq-tabs::-webkit-scrollbar{ display:none; }
+  .faq-tab{
+    flex-shrink:0; font-size:13px; font-weight:700; color:var(--gray);
+    background:var(--bg); border:1px solid var(--line);
+    padding:10px 18px; border-radius:30px; transition:all .2s ease;
+  }
+  .faq-tab.active{
+    background:var(--blue); color:#fff; border-color:var(--blue);
+  }
+  .faq-panel{ display:none; }
+  .faq-panel.active{ display:block; }
+  .faq-item{
+    border-bottom:1px solid var(--line);
+  }
+  .faq-q{
+    display:flex; justify-content:space-between; align-items:center; gap:12px;
+    padding:20px 4px; font-size:14px; font-weight:700; cursor:pointer;
+  }
+  .faq-q .icon{
+    flex-shrink:0; width:22px; height:22px; border-radius:50%;
+    border:1.5px solid var(--blue); color:var(--blue);
+    display:flex; align-items:center; justify-content:center;
+    font-size:14px; font-weight:700; transition:transform .25s ease;
+  }
+  .faq-item.open .faq-q .icon{ transform:rotate(45deg); }
+  .faq-a{
+    max-height:0; overflow:hidden; transition:max-height .3s ease;
+    font-size:13px; color:var(--gray); line-height:1.8;
+  }
+  .faq-item.open .faq-a{ max-height:400px; }
+  .faq-a-inner{ padding:0 4px 20px; }
+
+  /* ============ FOOTER ============ */
+  .footer{
+    background:var(--navy); color:rgba(255,255,255,0.45);
+    text-align:center; padding:48px 24px 110px; font-size:12px; line-height:2;
+  }
+  .footer-logo{ width:120px; margin:0 auto 18px; opacity:0.85; }
+  .footer b{ color:rgba(255,255,255,0.75); }
+
+  /* ============ SNS / INSTAGRAM ============ */
+  .sns-section{ text-align:center; }
+  .sns-link{
+    display:inline-flex; align-items:center; gap:12px;
+    background:#fff; border:1px solid var(--line);
+    border-radius:50px; padding:8px 24px 8px 8px;
+    box-shadow:0 4px 20px rgba(10,24,48,0.04);
+    font-size:14px; font-weight:700; color:var(--ink);
+    transition:transform .15s ease;
+  }
+  .sns-link:active{ transform:scale(0.97); }
+  .sns-link img{ width:38px; height:38px; border-radius:50%; }
+
+  /* ============ STICKY CTA ============ */
+  .sticky-cta{
+    position:fixed; bottom:0; left:0; right:0; z-index:90;
+    background:rgba(10,24,48,0.96); backdrop-filter:blur(10px);
+    border-top:1px solid rgba(255,255,255,0.08);
+    padding:14px 20px; padding-bottom:max(14px, env(safe-area-inset-bottom));
+  }
+  .sticky-cta-inner{
+    display:flex; gap:10px; max-width:560px; margin:0 auto;
+  }
+  .sticky-cta a{
+    flex:1; display:flex; align-items:center; justify-content:center; gap:8px;
+    color:#fff; font-size:15px; font-weight:800;
+    padding:16px; border-radius:14px;
+  }
+  .sticky-cta .sticky-doc{
+    background:rgba(255,255,255,0.10); border:1px solid rgba(255,255,255,0.30);
+  }
+  .sticky-cta .sticky-doc:active{ background:rgba(255,255,255,0.18); }
+  .sticky-cta .sticky-call{
+    background:var(--blue); box-shadow:0 8px 24px rgba(79,143,214,0.4);
+  }
+  .sticky-cta svg{ width:18px; height:18px; fill:#fff; }
+  .sticky-cta .pulse{
+    width:8px; height:8px; border-radius:50%; background:#7CFC9C;
+    animation:pulse 1.6s infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow:0 0 0 0 rgba(124,252,156,0.6); }
+    70%{ box-shadow:0 0 0 8px rgba(124,252,156,0); }
+    100%{ box-shadow:0 0 0 0 rgba(124,252,156,0); }
+  }
+
+  @media (min-width:600px){
+    .hero h1{ font-size:46px; }
+    .hero-keyword{ font-size:46px; }
+    .section-title{ font-size:32px; }
+  }
+
+  /* ============ POPUP ============ */
+  .popup-overlay{
+    position:fixed; inset:0; z-index:2000;
+    background:rgba(5,12,24,0.72);
+    display:none; align-items:center; justify-content:center;
+    padding:24px; backdrop-filter:blur(2px);
+  }
+  .popup-overlay.open{ display:flex; }
+  .popup-box{
+    width:100%; max-width:340px;
+    max-height:100%; overflow-y:auto;
+    background:linear-gradient(165deg, var(--navy2), var(--navy));
+    border-radius:20px; overflow-x:hidden; color:#fff;
+    box-shadow:0 24px 60px rgba(0,0,0,0.4);
+    position:relative;
+    animation:popup-in .35s cubic-bezier(.2,.8,.2,1);
+  }
+  @keyframes popup-in{
+    from{ opacity:0; transform:scale(0.92) translateY(10px); }
+    to{ opacity:1; transform:scale(1) translateY(0); }
+  }
+  .popup-close{
+    position:absolute; top:12px; right:12px; z-index:1;
+    width:32px; height:32px; border-radius:50%;
+    background:rgba(0,0,0,0.35); border:1px solid rgba(255,255,255,0.3);
+    color:#fff; font-size:18px; font-weight:300;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .popup-img{ width:100%; aspect-ratio:1/1; object-fit:cover; object-position:center 12%; }
+  .popup-body{ padding:22px 22px 24px; }
+  .popup-role{ font-size:11px; letter-spacing:2px; color:var(--blue-light); font-weight:700; margin-bottom:6px; text-transform:uppercase; }
+  .popup-name{ font-size:20px; font-weight:900; margin-bottom:10px; letter-spacing:-0.5px; }
+  .popup-desc{ font-size:13px; color:rgba(255,255,255,0.65); line-height:1.7; margin-bottom:18px; }
+  .popup-cta{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    background:var(--blue); color:#fff; font-size:15px; font-weight:800;
+    padding:14px; border-radius:12px; margin-bottom:14px;
+    box-shadow:0 8px 22px rgba(79,143,214,0.4);
+  }
+  .popup-cta svg{ width:16px; height:16px; fill:#fff; }
+  .popup-actions{ display:flex; border-top:1px solid rgba(255,255,255,0.12); margin:0 -22px -24px; }
+  .popup-actions button{
+    flex:1; background:transparent; color:rgba(255,255,255,0.55);
+    font-size:12px; padding:14px 8px; font-weight:500;
+  }
+  .popup-actions button:first-child{ border-right:1px solid rgba(255,255,255,0.12); }
+
+  /* ============ WHY PLK / FEATURES ============ */
+  .feature-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:8px;
+  }
+  .feature-card{
+    background:#fff; border:1px solid var(--line); border-radius:16px;
+    padding:20px 16px; box-shadow:0 4px 18px rgba(10,24,48,0.04);
+  }
+  .feature-card .icon{
+    width:38px; height:38px; border-radius:10px;
+    background:rgba(79,143,214,0.12); display:flex; align-items:center; justify-content:center;
+    margin-bottom:12px;
+  }
+  .feature-card .icon svg{ width:20px; height:20px; fill:var(--blue); }
+  .feature-card .ft-title{ font-size:14px; font-weight:800; margin-bottom:6px; letter-spacing:-0.3px; }
+  .feature-card .ft-desc{ font-size:12px; color:var(--gray); line-height:1.6; }
+
+  /* ============ VIDEO CAROUSEL ============ */
+  .video-carousel{ position:relative; }
+  .video-viewport{ overflow:hidden; border-radius:16px; }
+  .video-track{ display:flex; transition:transform .5s cubic-bezier(.4,0,.2,1); }
+  .video-slide{
+    min-width:100%; position:relative; aspect-ratio:16/9; background:#000;
+  }
+  .video-slide img,
+  .video-slide iframe{
+    position:absolute; inset:0; width:100%; height:100%; border:0; object-fit:cover;
+  }
+  .video-slide .play{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    cursor:pointer; background:linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.55));
+  }
+  .video-slide .play span{
+    width:66px; height:66px; border-radius:50%;
+    background:rgba(255,255,255,0.92); display:flex; align-items:center; justify-content:center;
+    box-shadow:0 6px 20px rgba(0,0,0,0.4); transition:transform .2s;
+  }
+  .video-slide .play:hover span{ transform:scale(1.08); }
+  .video-slide .play svg{ width:26px; height:26px; fill:var(--navy); margin-left:3px; }
+  .video-slide .v-title{
+    position:absolute; left:0; right:0; bottom:0; padding:18px 20px;
+    font-size:15px; font-weight:800; color:#fff; line-height:1.4; pointer-events:none;
+    text-shadow:0 2px 8px rgba(0,0,0,0.6);
+  }
+  .video-arrow{
+    position:absolute; top:50%; transform:translateY(-50%); z-index:2;
+    width:42px; height:42px; border-radius:50%; border:0; cursor:pointer;
+    background:rgba(0,0,0,0.5); color:#fff; display:flex; align-items:center; justify-content:center;
+    backdrop-filter:blur(4px);
+  }
+  .video-arrow:hover{ background:rgba(0,0,0,0.75); }
+  .video-arrow.prev{ left:10px; }
+  .video-arrow.next{ right:10px; }
+  .video-arrow svg{ width:20px; height:20px; fill:#fff; }
+  .video-dots{ display:flex; justify-content:center; gap:8px; margin-top:16px; }
+  .video-dots button{
+    width:8px; height:8px; border-radius:50%; border:0; padding:0; cursor:pointer;
+    background:rgba(255,255,255,0.3); transition:all .25s;
+  }
+  .video-dots button.active{ background:var(--blue-light); width:22px; border-radius:5px; }
+  .video-channel-link{
+    display:inline-flex; align-items:center; gap:8px; margin-top:18px;
+    font-size:13px; font-weight:700; color:var(--blue);
+  }
+
+  /* ---- HERO VIDEO (메인 이미지 바로 아래) ---- */
+  .hero-video{
+    padding:0 0 8px;
+    background:linear-gradient(180deg, #03070f 0%, var(--navy2) 100%);
+  }
+  .hero-video .frame{
+    position:relative; width:100%; aspect-ratio:16/9;
+    border-radius:16px; overflow:hidden;
+    box-shadow:0 18px 44px rgba(0,0,0,0.45);
+    background:#000;
+  }
+  .hero-video .frame iframe{
+    position:absolute; inset:0; width:100%; height:100%; border:0; display:block;
+  }
+  .hero-video .cap{
+    margin-top:12px; text-align:center;
+    font-size:12px; font-weight:600; color:rgba(255,255,255,0.5);
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ POPUP ============ -->
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup-box">
+    <div class="popup-close" onclick="closePopup()">&times;</div>
+    <img src="01/Profile.jpg" alt="양해영 본부장" class="popup-img" />
+    <div class="popup-body">
+      <div class="popup-role">PacificLinks Korea</div>
+      <div class="popup-name">본부장 양해영</div>
+      <p class="popup-desc">
+        평생 그린피 50%, 국내 270여개 · 전세계 1,000여개<br>
+        제휴 골프장을 이용하는 프리미엄 멤버십.<br>
+        지금 상담받고 가장 좋은 조건을 안내받으세요.
+      </p>
+      <a href="tel:01085592481" class="popup-cta">
+        <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
+        지금 바로 전화 상담
+      </a>
+      <div class="popup-actions">
+        <button onclick="closePopup(1)">오늘 하루 보지 않음</button>
+        <button onclick="closePopup()">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TOP BAR ============ -->
+<div class="topbar" id="topbar">
+  <img src="01/logo_W.png" alt="PacificLinks Korea" class="topbar-logo" />
+  <a href="tel:01085592481" class="topbar-call">
+    <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
+    전화상담
+  </a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <img src="01/logo_W.png" alt="PacificLinks Korea" class="hero-logo" />
+  <div class="hero-eyebrow">Global Premium Golf Life Platform</div>
+  <h1>특별한 골프 라이프,<br><span>퍼시픽링스</span>에서<br>시작하세요</h1>
+  <div class="hero-keyword-wrap">
+    <span class="hero-keyword" id="heroKeyword">국내·해외 그린피 50%</span>
+  </div>
+  <div class="hero-agent">
+    <img src="01/Profile.jpg" alt="양해영 본부장" />
+    <div class="hero-agent-text">
+      <div class="hero-agent-role">담당 본부장</div>
+      <div class="hero-agent-name">양해영 <a href="tel:01085592481" class="hero-agent-tel">010-8559-2481</a></div>
+    </div>
+  </div>
+  <div class="hero-actions">
+    <a href="#request" class="btn-primary">
+      <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      안내자료 받기
+    </a>
+    <a href="tel:01085592481" class="btn-primary">
+      <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
+      전화 상담
+    </a>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- ============ HERO VIDEO ============ -->
+<section class="hero-video">
+  <div class="container">
+    <div class="frame reveal">
+      <iframe
+        src="https://www.youtube.com/embed/5j4Z3RH6RPM?autoplay=1&mute=1&loop=1&playlist=5j4Z3RH6RPM&playsinline=1&rel=0&modestbranding=1"
+        title="퍼시픽링스 소개 영상"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen
+        loading="lazy"></iframe>
+    </div>
+    <div class="cap">소리를 켜려면 영상의 음소거 버튼을 눌러주세요</div>
+  </div>
+</section>
+
+<!-- ============ INTRO / STATS ============ -->
+<section class="section dark">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow-tag">PacificLinks Korea</div>
+      <h2 class="section-title">전 세계가 인정한<br><b>글로벌 골프 네트워크</b></h2>
+      <p class="section-desc">하나의 멤버십으로 국내외 프리미엄 골프장을 자유롭게 이용하세요.</p>
+    </div>
+    <div class="stats-grid reveal">
+      <div class="stat-group">
+        <div class="stat-card">
+          <div class="stat-num" data-count="240" data-suffix="+">240+</div>
+          <div class="stat-label">국내 제휴 골프장</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" data-count="50" data-suffix="%">50%</div>
+          <div class="stat-label">정산그린피 (국내)</div>
+        </div>
+      </div>
+      <div class="stat-group">
+        <div class="stat-card">
+          <div class="stat-num" data-count="1000" data-suffix="+">1,000+</div>
+          <div class="stat-label">전세계 제휴 골프장</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" data-count="50" data-suffix="%">50%</div>
+          <div class="stat-label">정산그린피 (해외)</div>
+        </div>
+      </div>
+    </div>
+    <div class="badge-row reveal">
+      <span class="badge">평생 그린피 50%</span>
+      <span class="badge">위임(무기명) 가능</span>
+      <span class="badge">주중·주말 이용</span>
+    </div>
+
+    <div class="benefit-head reveal">
+      <div class="eyebrow-tag">Membership Benefits</div>
+      <h2 class="section-title">퍼시픽링스<br><b>골프멤버십 혜택</b></h2>
+    </div>
+    <div class="benefit-grid reveal">
+      <div class="benefit-card">
+        <div class="benefit-img"><!-- 이미지: 01/benefit-1.png --><img src="01/benefit-1.png" alt="국내·해외 골프장 공식 제휴 세계 1위" onerror="this.style.display='none';this.parentNode.innerHTML='이미지 영역<br>01/benefit-1.png'" /></div>
+        <div class="benefit-body">
+          <div class="benefit-no">BENEFIT 01</div>
+          <div class="benefit-title">국내·해외 골프장 공식 제휴 세계 1위</div>
+          <div class="benefit-desc">국내 240여개, 해외 1,000여개 제휴 골프장을 공식 네트워크로 이용합니다.</div>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-img"><!-- 이미지: 01/benefit-2.png --><img src="01/benefit-2.png" alt="필드 부킹 성공률 95%" onerror="this.style.display='none';this.parentNode.innerHTML='이미지 영역<br>01/benefit-2.png'" /></div>
+        <div class="benefit-body">
+          <div class="benefit-no">BENEFIT 02</div>
+          <div class="benefit-title">필드 부킹 성공률 95%</div>
+          <div class="benefit-desc">업계 최고 수준의 예약 성공률로 원하는 티타임과 골프장을 확보합니다.</div>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-img"><!-- 이미지: 01/benefit-3.png --><img src="01/benefit-3.png" alt="평생 반값 그린피 실현" onerror="this.style.display='none';this.parentNode.innerHTML='이미지 영역<br>01/benefit-3.png'" /></div>
+        <div class="benefit-body">
+          <div class="benefit-no">BENEFIT 03</div>
+          <div class="benefit-title">평생 반값 그린피 실현</div>
+          <div class="benefit-desc">국내·해외 모두 정산 그린피 50%, 평생 동일하게 적용됩니다.</div>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-img"><!-- 이미지: 01/benefit-4.png --><img src="01/benefit-4.png" alt="반값 골프 투어패키지" onerror="this.style.display='none';this.parentNode.innerHTML='이미지 영역<br>01/benefit-4.png'" /></div>
+        <div class="benefit-body">
+          <div class="benefit-no">BENEFIT 04</div>
+          <div class="benefit-title">반값 골프 투어패키지</div>
+          <div class="benefit-desc">라운드·항공·숙박·관람·쇼핑에 전담 컨시어지까지 패키지로 제공합니다.</div>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-img"><!-- 이미지: 01/benefit-5.png --><img src="01/benefit-5.png" alt="한 번 가입으로 평생 회원" onerror="this.style.display='none';this.parentNode.innerHTML='이미지 영역<br>01/benefit-5.png'" /></div>
+        <div class="benefit-body">
+          <div class="benefit-no">BENEFIT 05</div>
+          <div class="benefit-title">한 번 가입으로 평생 회원</div>
+          <div class="benefit-desc">갱신 없이 평생 이용 가능하며, 5년 후 양도 옵션도 제공됩니다.</div>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-img"><!-- 이미지: 01/benefit-6.jpg --><img src="01/benefit-6.jpg" alt="" onerror="this.style.display='none';this.parentNode.innerHTML='이미지 영역<br>01/benefit-6.jpg'" /></div>
+        <div class="benefit-body">
+          <div class="benefit-no">BENEFIT 06</div>
+          <div class="benefit-title">4대 메이저 대회 관람 초대</div>
+          <div class="benefit-desc">마스터스, US오픈 등 세계적인 대회 갤러리·라운드 기회를 제공합니다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY PLK / FEATURES ============ -->
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow-tag">Why PacificLinks</div>
+      <h2 class="section-title">국내·해외 골프장<br>공식 제휴 <b>1위 네트워크</b></h2>
+      <p class="section-desc">규모뿐 아니라 예약 확정률과 부가 서비스까지 검증된 멤버십입니다.</p>
+    </div>
+    <div class="feature-grid reveal">
+      <div class="feature-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 2c1.1 0 2.13.27 3.05.74-.3.86-1.1 2.6-2.92 4.42C10.86 7.57 9.4 6.5 8.36 5.91A7.95 7.95 0 0112 4zm-6 8c0-1.2.32-2.32.87-3.3 1.06.62 2.6 1.7 3.78 3.4-1.95 1.95-3.1 4.13-3.55 5.5A7.96 7.96 0 016 12zm6 8c-1.13 0-2.2-.27-3.14-.76.34-1.1 1.36-3.2 3.3-5.13 1.86 1.83 2.83 3.86 3.16 5.02A7.95 7.95 0 0112 20zm5.1-1.97c-.46-1.4-1.6-3.5-3.5-5.4 1.86-1.94 3-3.96 3.55-5.32A7.96 7.96 0 0120 12c0 2.4-.95 4.58-2.9 6.03z"/></svg></div>
+        <div class="ft-title">글로벌 네트워크</div>
+        <div class="ft-desc">국내 240여개, 해외 50여개국 1,000여개 제휴 골프장</div>
+      </div>
+      <div class="feature-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M11.8 1l-9 8.2L5 11l-2 8 9-4.6 9 4.6-2-8 2.2-1.8L12.2 1z"/></svg></div>
+        <div class="ft-title">합리적 그린피</div>
+        <div class="ft-desc">국내·해외 그린피 50%</div>
+      </div>
+      <div class="feature-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 1l3 5 5 1-4 4 1 6-5-3-5 3 1-6-4-4 5-1z"/></svg></div>
+        <div class="ft-title">평생 이용</div>
+        <div class="ft-desc">평생 그린피 50% 혜택, 갱신 없이 계속 이용</div>
+      </div>
+      <div class="feature-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zM8 11c1.66 0 3-1.34 3-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5C15 14.17 10.33 13 8 13zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
+        <div class="ft-title">위임(무기명) 가능</div>
+        <div class="ft-desc">무기명 4인 위임 이용지원</div>
+      </div>
+      <div class="feature-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1a2.996 2.996 0 00-5.5-1.65l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-2 .89-2 2v11c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1z"/></svg></div>
+        <div class="ft-title">90%+ 예약 확정률</div>
+        <div class="ft-desc">제휴 골프장과의 협력으로 안정적인 티타임 확보</div>
+      </div>
+      <div class="feature-card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        <div class="ft-title">부가 서비스</div>
+        <div class="ft-desc">예약·여행 컨시어지, 항공·숙박 할인, 아카데미</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MEMBERSHIP ============ -->
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow-tag">Membership</div>
+      <h2 class="section-title">나에게 맞는<br><b>회원권</b>을 선택하세요</h2>
+      <p class="section-desc">탭하여 상세 안내를 확인하고, 전화로 바로 상담받으세요.</p>
+    </div>
+
+    <div class="category-heading reveal">평생형 멤버십</div>
+
+    <div class="mem-card reveal">
+      <div class="mem-title">개인 라이프 50</div>
+      <div class="mem-badges">
+        <span class="mem-badge">평생 그린피 50%</span>
+        <span class="mem-badge">위임(무기명)가능</span>
+        <span class="mem-badge">주중·주말 이용</span>
+      </div>
+      <div class="mem-spec-grid">
+        <div class="spec"><span class="spec-label">입회비</span><span class="spec-val">45,000,000원</span></div>
+        <div class="spec"><span class="spec-label">연회비</span><span class="spec-val">780,000원</span></div>
+        <div class="spec"><span class="spec-label">이용기간</span><span class="spec-val">평생</span></div>
+        <div class="spec"><span class="spec-label">연간 이용</span><span class="spec-val">50회 (월 5회)</span></div>
+      </div>
+      <div class="mem-actions">
+        <button class="btn-outline" onclick="openLightbox('01/KakaoTalk_20260610_025151020.jpg')">자세히 보기</button>
+        <a href="tel:01085592481" class="btn-fill">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
+          상담문의
+        </a>
+      </div>
+    </div>
+
+    <div class="mem-card reveal">
+      <div class="mem-title">법인 라이프 50</div>
+      <div class="mem-badges">
+        <span class="mem-badge">평생 그린피 50%</span>
+        <span class="mem-badge">위임(무기명)가능</span>
+        <span class="mem-badge">주중·주말 이용</span>
+      </div>
+      <div class="mem-spec-grid">
+        <div class="spec"><span class="spec-label">입회비</span><span class="spec-val">169,000,000원</span></div>
+        <div class="spec"><span class="spec-label">연회비</span><span class="spec-val">2,800,000원</span></div>
+        <div class="spec"><span class="spec-label">이용기간</span><span class="spec-val">평생</span></div>
+        <div class="spec"><span class="spec-label">연간 이용</span><span class="spec-val">50회 (월 5회)</span></div>
+      </div>
+      <div class="mem-actions">
+        <button class="btn-outline" onclick="openLightbox('01/KakaoTalk_20260610_025151020.jpg')">자세히 보기</button>
+        <a href="tel:01085592481" class="btn-fill">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
+          상담문의
+        </a>
+      </div>
+    </div>
+
+    <div class="mem-card reveal">
+      <div class="mem-title">1+1 라이프 50</div>
+      <div class="mem-badges">
+        <span class="mem-badge">평생 그린피 50%</span>
+        <span class="mem-badge">위임(무기명)가능</span>
+        <span class="mem-badge">주중·주말 이용</span>
+      </div>
+      <div class="mem-spec-grid">
+        <div class="spec"><span class="spec-label">입회비</span><span class="spec-val">85,000,000원</span></div>
+        <div class="spec"><span class="spec-label">연회비</span><span class="spec-val">1,500,000원</span></div>
+        <div class="spec"><span class="spec-label">이용기간</span><span class="spec-val">평생</span></div>
+        <div class="spec"><span class="spec-label">연간 이용</span><span class="spec-val">50회 (월 5회)</span></div>
+      </div>
+      <div class="mem-actions">
+        <button class="btn-outline" onclick="openLightbox('01/KakaoTalk_20260610_025151020.jpg')">자세히 보기</button>
+        <a href="tel:01085592481" class="btn-fill">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
+          상담문의
+        </a>
+      </div>
+    </div>
+
+    <div class="mem-card reveal">
+      <div class="mem-title">개인 라이프 30</div>
+      <div class="mem-badges">
+        <span class="mem-badge">평생 그린피 50%</span>
+        <span class="mem-badge">위임(무기명)가능</span>
+        <span class="mem-badge">주중·주말 이용</span>
+      </div>
+      <div class="mem-spec-grid">
+        <div class="spec"><span class="spec-label">입회비</span><span class="spec-val">29,000,000원</span></div>
+        <div class="spec"><span class="spec-label">연회비</span><span class="spec-val">600,000원</span></div>
+        <div class="spec"><span class="spec-label">이용기간</span><span class="spec-val">평생</span></div>
+        <div class="spec"><span class="spec-label">연간 이용</span><span class="spec-val">30회 (월 3회)</span></div>
+      </div>
+      <div class="mem-actions">
+        <button class="btn-outline" onclick="openLightbox('01/KakaoTalk_20260610_025154593.jpg')">자세히 보기</button>
+        <a href="tel:01085592481" class="btn-fill">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
+          상담문의
+        </a>
+      </div>
+    </div>
+
+    <div class="mem-card reveal">
+      <div class="mem-title">법인 라이프 30</div>
+      <div class="mem-badges">
+        <span class="mem-badge">평생 그린피 50%</span>
+        <span class="mem-badge">위임(무기명)가능</span>
+        <span class="mem-badge">주중·주말 이용</span>
+      </div>
+      <div class="mem-spec-grid">
+        <div class="spec"><span class="spec-label">입회비</span><span class="spec-val">119,000,000원</span></div>
+        <div class="spec"><span class="spec-label">연회비</span><span class="spec-val">2,200,000원</span></div>
+        <div class="spec"><span class="spec-label">이용기간</span><span class="spec-val">평생</span></div>
+        <div class="spec"><span class="spec-label">연간 이용</span><span class="spec-val">30회 (월 3회)</span></div>
+      </div>
+      <div class="mem-actions">
+        <button class="btn-outline" onclick="openLightbox('01/KakaoTalk_20260610_025154593.jpg')">자세히 보기</button>
+        <a href="tel:01085592481" class="btn-fill">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
+          상담문의
+        </a>
+      </div>
+    </div>
+
+    <div class="mem-card reveal">
+      <div class="mem-title">법인 라이프 30 · 50</div>
+      <div class="mem-badges">
+        <span class="mem-badge">평생 그린피 50%</span>
+        <span class="mem-badge">위임(무기명) 가능</span>
+        <span class="mem-badge">국내 2700여개 · 전세계 1,000여개</span>
+      </div>
+      <div class="mem-spec-grid">
+        <div class="spec"><span class="spec-label">이용처</span><span class="spec-val">국내 240+</span></div>
+        <div class="spec"><span class="spec-label">해외 이용처</span><span class="spec-val">전세계 1,000+</span></div>
+        <div class="spec"><span class="spec-label">위임</span><span class="spec-val">무기명 가능</span></div>
+        <div class="spec"><span class="spec-label">그린피</span><span class="spec-val">정산가 50%</span></div>
+      </div>
+      <div class="mem-actions">
+        <button class="btn-outline" onclick="openLightbox('01/KakaoTalk_20260610_025158013.jpg')">자세히 보기</button>
+        <a href="tel:01085592481" class="btn-fill">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
+          상담문의
+        </a>
+      </div>
+    </div>
+
+    <div class="category-heading reveal">반환형 멤버십</div>
+
+    <div class="mem-card reveal">
+      <div class="mem-title">PLK 5년 반환형 50회</div>
+      <div class="mem-desc">5년 후 입회금 전액 반환 · 평생 그린피 50% · 국내·외 이용</div>
+      <div class="mem-spec-grid">
+        <div class="spec"><span class="spec-label">입회금</span><span class="spec-val">300,000,000원</span></div>
+        <div class="spec"><span class="spec-label">연회비</span><span class="spec-val">4,000,000원</span></div>
+        <div class="spec"><span class="spec-label">이용기간</span><span class="spec-val">5년</span></div>
+        <div class="spec"><span class="spec-label">연간 이용</span><span class="spec-val">50회 (월 5회)</span></div>
+      </div>
+      <div class="mem-actions">
+        <button class="btn-outline" onclick="openLightbox('01/KakaoTalk_20260610_025135057.png')">자세히 보기</button>
+        <a href="tel:01085592481" class="btn-fill">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
+          상담문의
+        </a>
+      </div>
+    </div>
+
+    <div class="mem-card reveal">
+      <div class="mem-title">PLK 5년 반환형 올그린 60회</div>
+      <div class="mem-desc">5년 후 입회금 전액 반환 · 평생 그린피 100% · 국내·외 이용</div>
+      <div class="mem-spec-grid">
+        <div class="spec"><span class="spec-label">입회금</span><span class="spec-val">600,000,000원</span></div>
+        <div class="spec"><span class="spec-label">연회비</span><span class="spec-val">8,000,000원</span></div>
+        <div class="spec"><span class="spec-label">이용기간</span><span class="spec-val">5년</span></div>
+        <div class="spec"><span class="spec-label">연간 이용</span><span class="spec-val">60회 (월 6회)</span></div>
+      </div>
+      <div class="mem-actions">
+        <button class="btn-outline" onclick="openLightbox('01/KakaoTalk_20260610_025135057.png')">자세히 보기</button>
+        <a href="tel:01085592481" class="btn-fill">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
+          상담문의
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REQUEST FORM (안내자료 받기) ============ -->
+<section class="section dark" id="request">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow-tag">Inquiry</div>
+      <h2 class="section-title">자료 요청 · <b>입회 문의</b></h2>
+      <p class="section-desc">관심 상품과 연락처를 남겨주시면<br>담당 본부장이 멤버십 안내자료를 보내드립니다.</p>
+    </div>
+
+    <div class="request-card reveal">
+      <!-- 신청 폼 -->
+      <form id="requestForm" autocomplete="on">
+        <div class="req-field">
+          <label>관심 상품을 알려주세요 <span class="req-star">*</span></label>
+          <select name="관심상품" required>
+            <option value="" disabled selected>상품을 선택해주세요</option>
+            <option>개인 라이프 50</option>
+            <option>법인 라이프 50</option>
+            <option>1+1 라이프 50</option>
+            <option>개인 라이프 30</option>
+            <option>법인 라이프 30</option>
+            <option>PLK 5년 반환형 50회</option>
+            <option>PLK 5년 반환형 올그린 60회</option>
+            <option>아직 결정하지 못했어요 (상담 희망)</option>
+          </select>
+        </div>
+
+        <div class="req-field">
+          <label>선호 지역을 알려주세요 <span class="req-star">*</span></label>
+          <select name="선호지역" required>
+            <option value="" disabled selected>지역을 선택해주세요</option>
+            <option>서울</option>
+            <option>경기·인천</option>
+            <option>강원</option>
+            <option>충청·대전·세종</option>
+            <option>경상·부산·대구·울산</option>
+            <option>전라·광주</option>
+            <option>제주</option>
+            <option>해외</option>
+            <option>전국·상관없음</option>
+          </select>
+        </div>
+
+        <div class="req-field">
+          <label>성함 또는 법인명(직함) <span class="req-star">*</span></label>
+          <input type="text" name="성함" placeholder="예) 홍길동 / (주)퍼시픽 대표" required />
+        </div>
+
+        <div class="req-field">
+          <label>연락처 <span class="req-star">*</span></label>
+          <input type="tel" name="연락처" placeholder="예) 010-1234-5678" required
+                 pattern="[0-9\-\s]{9,15}" inputmode="numeric" />
+        </div>
+
+        <button type="submit" class="req-submit" id="reqSubmitBtn">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          안내자료 요청
+        </button>
+
+        <p class="req-privacy">
+          입력하신 정보는 멤버십 안내 및 상담 목적으로만 이용되며,<br>
+          상담 완료 후 안전하게 폐기됩니다.
+        </p>
+      </form>
+
+      <!-- 접수 완료 -->
+      <div class="req-success" id="requestSuccess">
+        <div class="check">
+          <svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
+        </div>
+        <div class="req-success-title">정상적으로 접수되었습니다</div>
+        <div class="req-success-desc">
+          담당 본부장이 확인 후 빠르게 연락드리겠습니다.<br>
+          빠른 상담을 원하시면 아래 전화로 문의해 주세요.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROFILE / CONTACT ============ -->
+<section class="section dark">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow-tag">Contact</div>
+      <h2 class="section-title">담당 본부장에게<br><b>직접 상담</b>받으세요</h2>
+      <p class="section-desc">멤버십 종류, 가격, 이용 방법까지 친절하게 안내해 드립니다.</p>
+    </div>
+
+    <div class="profile-card reveal">
+      <img src="01/Profile.jpg" alt="양해영 본부장" class="profile-img" />
+      <div class="profile-body">
+        <div class="profile-role">PacificLinks Korea</div>
+        <div class="profile-name">본부장 양해영</div>
+        <p class="profile-desc">
+          고객 한 분 한 분의 라이프스타일에 맞는<br>
+          최적의 골프 멤버십을 안내해 드립니다.<br>
+          궁금하신 사항은 언제든 편하게 연락주세요.
+        </p>
+        <div class="profile-actions">
+          <a href="tel:01085592481" class="profile-call">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
+            전화 걸기 010-8559-2481
+          </a>
+          <div class="profile-sub-actions">
+            <a href="sms:01085592481" class="profile-sms">
+              <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+              문자 보내기
+            </a>
+          </div>
+        </div>
+        <div class="profile-tel-num">010-8559-2481</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow-tag">FAQ</div>
+      <h2 class="section-title">자주 묻는 <b>질문</b></h2>
+    </div>
+    <div class="faq-tabs reveal">
+      <button class="faq-tab active" onclick="switchFaqTab(this,'company')">회사 정보</button>
+      <button class="faq-tab" onclick="switchFaqTab(this,'product')">상품·서비스</button>
+      <button class="faq-tab" onclick="switchFaqTab(this,'fee')">입회비·연회비</button>
+      <button class="faq-tab" onclick="switchFaqTab(this,'reserve')">예약·결제</button>
+    </div>
+    <div class="faq-panel active" data-faq="company">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>퍼시픽링스는 어떤 회사인가요?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">전 세계 골프 네트워크를 기반으로 "하나의 카드로 모든 골프장 이용"이 가능한 글로벌 골프 멤버십 전문 기업입니다. 2009년 미주법인 설립 이후 13년 이상 운영해왔으며, 2017년 한국법인 설립 후 빠르게 성장하고 있습니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>일반 골프 회원권과 무엇이 다른가요?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">특정 골프장 한 곳만 이용 가능한 일반 회원권과 달리, 제휴된 모든 골프장을 회원가로 이용할 수 있는 멤버십입니다. 골프 예약, 여행 컨시어지 등 다양한 부가 서비스도 함께 제공됩니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>퍼시픽링스 멤버십만의 특장점은?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">국내 240여개, 해외 50여개국 1,000여개 제휴 골프장을 보유한 글로벌 네트워크 / 업계 최고 수준의 합리적인 정산 그린피(국내·해외 50%) / 평생 이용 가능한 멤버십이라는 점이 강점입니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>퍼시픽링스의 사업 분야는?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">골프 멤버십을 핵심 사업으로 하며, 골프 예약·여행·컨시어지·아카데미 등을 부가 서비스로 제공합니다. 골프용품, 의류, 골프장 운영 등으로도 사업 영역을 확장하고 있습니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>국내 네트워크는 어떻게 되나요?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">서울 본사 및 수도권 지사를 비롯해 영남·충청·호남 등 전국 각 지역에 지사 및 사업부를 운영하며, 전국 어디서나 동일한 수준의 서비스를 제공합니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>회원이 늘어나면 예약이 어려워지지 않나요?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">회원 증가는 곧 구매력 향상으로 이어져 오히려 티타임 확보에 유리하게 작용합니다. 골프장 또한 안정적인 내장객 확보를 위해 협력 관계를 강화하고 있어, 회원과 함께 성장하는 구조입니다.</div></div>
+      </div>
+    </div>
+
+    <div class="faq-panel" data-faq="product">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>제휴 골프장 리스트는 어떻게 확인하나요?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">제휴 골프장 리스트는 회원에게만 비공개로 안내됩니다. 가입 후 담당 본부장 또는 예약실을 통해 확인하실 수 있습니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>제휴 골프장의 수준은 어떤가요?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">회원 선호도가 높은 골프장을 우선적으로 제휴하고 있으며, 수량뿐 아니라 품질도 고려해 회원 수요에 맞춰 지속적으로 네트워크를 확대하고 있습니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>이용 가능한 제휴 골프장은 몇 개인가요?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">2025년 기준 국내 240여개 골프장과 제휴되어 있으며, 매년 꾸준히 늘어나고 있습니다. 해외는 50여개국 1,000여개 골프장에서 이용 가능합니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>회원이 받을 수 있는 혜택은?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">웰컴기프트, 국내외 골프 예약 및 회원가 그린피, 골프 여행·컨시어지 서비스, 항공·숙박 회원 할인, 지역별 초청 행사·이벤트, 골프 아카데미 이용 혜택 등을 제공합니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>연간 이용 횟수는 어떻게 되나요?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">국내 기준 연 50회이며, 성수기(4~6월·9~11월)는 월 4회(주중 3회·주말 1회), 비수기는 월 6회(주중 4회·주말 2회) 이용 가능합니다. 해외는 골프장별로 연 2~20회이며, 멤버십 종류에 따라 세부 조건이 다릅니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>티타임은 어떻게 확보되나요?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">제휴 골프장과의 긴밀한 협력을 통해 적법한 절차로 안정적으로 티타임을 확보하고 있으며, 다양한 골프장 활용을 통해 예약 서비스를 지속적으로 운영합니다.</div></div>
+      </div>
+    </div>
+
+    <div class="faq-panel" data-faq="fee">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>연회비는 왜 납부하나요?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">평생 멤버십을 유지하기 위한 최소한의 연간 비용으로, 골프 예약, 여행, 컨시어지 등 매년 제공되는 다양한 회원 서비스 운영에 사용됩니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>입회비 할인이 가능한가요?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">전국 모든 지사에서 동일한 금액으로 안내되며, 개인별 별도 할인은 적용되지 않습니다. 다만 시기에 따라 전국 단위 프로모션을 통한 혜택이 제공될 수 있습니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>입회비가 매년 인상되는 이유는?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">물가 및 운영비 상승분이 반영되어 단계적으로 정상화되고 있습니다. 이는 곧 기존 회원이 보유한 멤버십의 가치 상승을 의미하므로, 빠른 가입이 유리합니다.</div></div>
+      </div>
+    </div>
+
+    <div class="faq-panel" data-faq="reserve">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>멤버십 계약 기간은 어떻게 되나요?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">평생 이용 가능한 멤버십으로 별도의 계약 갱신이 필요 없습니다. 최초 계약과 입회금 납부 이후 계속 이용하실 수 있으며, 입회일로부터 일정 기간 경과 후 양도도 가능합니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>이용요금 결제는 어떤 방법이 있나요?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">카드결제, 계좌이체, URL결제, 현장결제 후 페이백 등 다양한 방식으로 결제 가능합니다. 예약 시 원하는 결제 방식을 선택해 요청하실 수 있습니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>모바일로도 예약할 수 있나요?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">네, PLK 전용 모바일 앱을 통해 예약 현황 확인, 직접 예약, 이용 내역 조회까지 편리하게 이용하실 수 있습니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>골프 예약은 어떻게 진행하나요?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">담당 지사 예약실, 회원 상담채널, 또는 PLK 모바일 앱을 통해 신속하게 예약하실 수 있습니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>예약은 잘 되는 편인가요?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">90% 이상의 높은 예약 확정률을 유지하고 있습니다. 골프장과의 긴밀한 협력과 다양한 골프장 활용을 통해 만족스러운 예약 서비스를 제공합니다.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>회원 본인 외 다른 사람도 이용 가능한가요?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">기명 회원제로 운영되어 계약서에 명시된 본인만 이용 가능합니다. 다만 위임형 상품의 경우, 약관 범위 내에서 기명인의 예약 후 제3자에게 위임하여 이용할 수 있습니다.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ YOUTUBE VIDEO ROLLING ============ -->
+<section class="section dark">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow-tag">PLK Channel</div>
+      <h2 class="section-title">영상으로 만나보는<br><b>퍼시픽링스</b></h2>
+      <p class="section-desc">본사 유튜브 채널의 소개 영상과 대회 현장을 확인해 보세요.</p>
+    </div>
+    <div class="video-carousel reveal" id="videoCarousel">
+      <div class="video-viewport">
+        <div class="video-track" id="videoTrack"></div>
+      </div>
+      <button class="video-arrow prev" id="videoPrev" aria-label="이전 영상">
+        <svg viewBox="0 0 24 24"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+      <button class="video-arrow next" id="videoNext" aria-label="다음 영상">
+        <svg viewBox="0 0 24 24"><path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+      <div class="video-dots" id="videoDots"></div>
+    </div>
+    <a href="https://youtube.com/@pacificlinkskorea5398?si=kKUArqeM22kuyKUn" target="_blank" class="video-channel-link reveal">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM10 15V9l5.2 3-5.2 3z"/></svg>
+      퍼시픽링스코리아 유튜브 채널 보기
+    </a>
+  </div>
+</section>
+
+<!-- ============ INSTAGRAM ============ -->
+<section class="section">
+  <div class="container sns-section">
+    <div class="reveal">
+      <div class="eyebrow-tag">Daily PLK</div>
+      <h2 class="section-title"><b>퍼시픽링스</b> 인스타그램</h2>
+    </div>
+    <a href="https://www.instagram.com/pacificlinks.korea_official/" target="_blank" class="sns-link reveal">
+      <img src="01/sns_logo.jpg" alt="PacificLinks Korea Instagram" />
+      <span>@pacificlinks.korea_official</span>
+    </a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <img src="01/logo_W.png" alt="PacificLinks Korea" class="footer-logo" />
+  <div>
+    <b>퍼시픽링스 코리아(유) 울산지사</b><br>
+    (우)44722 울산시 남구 삼산로 126 2F
+  </div>
+  <div style="margin-top:10px;">
+    <b>퍼시픽링스 코리아 본사</b><br>
+    (우)06225 서울특별시 강남구 역삼로 235 위너스빌딩 4F<br>
+    TEL. 1522-1642 · www.pacificlinks.co.kr
+  </div>
+  <div style="margin-top:14px;">
+    담당 본부장 <b>양해영</b> · <span style="font-size:1.5em; font-weight:800; color:#fff;">010-8559-2481</span>
+  </div>
+</footer>
+
+<!-- ============ LIGHTBOX ============ -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-close" onclick="closeLightbox(event)">&times;</div>
+  <img id="lightbox-img" src="" alt="회원권 상세 정보" />
+  <div class="lightbox-hint">탭하여 닫기</div>
+</div>
+
+<!-- ============ STICKY CTA ============ -->
+<div class="sticky-cta">
+  <div class="sticky-cta-inner">
+    <a href="#request" class="sticky-doc">
+      <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      안내자료 받기
+    </a>
+    <a href="tel:01085592481" class="sticky-call">
+      <span class="pulse"></span>
+      <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
+      상담하기
+    </a>
+  </div>
+</div>
+
+<script>
+  // ============================================================
+  // [설정] 안내자료 신청을 받을 이메일 주소 — 여기만 바꾸면 됩니다.
+  //  ※ Formsubmit.co 사용. 최초 1회, 이 이메일로 오는 확인메일의
+  //    링크를 클릭해 인증해야 이후 신청 메일이 정상 수신됩니다.
+  // ============================================================
+  const REQUEST_EMAIL = 'didgo7010@gmail.com';
+
+  // 안내자료 요청 폼 제출
+  (function(){
+    const form = document.getElementById('requestForm');
+    if(!form) return;
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+      const btn = document.getElementById('reqSubmitBtn');
+      const successEl = document.getElementById('requestSuccess');
+      btn.disabled = true;
+      btn.textContent = '전송 중...';
+
+      const data = new FormData(form);
+      data.append('_subject', '[홈페이지] 안내자료 요청');
+      data.append('_template', 'table');
+      data.append('_captcha', 'false');
+
+      function showSuccess(){
+        form.style.display = 'none';
+        successEl.classList.add('show');
+      }
+
+      // 이메일이 아직 설정되지 않았으면 접수 화면만 표시 (데모)
+      if(REQUEST_EMAIL.indexOf('CHANGE_ME') === 0){
+        console.warn('REQUEST_EMAIL이 아직 설정되지 않아 메일이 전송되지 않습니다.');
+        showSuccess();
+        return;
+      }
+
+      try{
+        const res = await fetch('https://formsubmit.co/ajax/' + encodeURIComponent(REQUEST_EMAIL), {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: data
+        });
+        if(res.ok){ showSuccess(); }
+        else{ throw new Error('submit failed'); }
+      }catch(err){
+        btn.disabled = false;
+        btn.textContent = '안내자료 요청';
+        alert('일시적인 오류로 접수에 실패했습니다.\n전화(010-8559-2481)로 문의해 주세요.');
+      }
+    });
+  })();
+
+  // 팝업
+  function getCookie(name){
+    const m = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+    return m ? m.pop() : '';
+  }
+  function setCookie(name, value, days){
+    const d = new Date();
+    d.setTime(d.getTime() + days*24*60*60*1000);
+    document.cookie = name + '=' + value + ';expires=' + d.toUTCString() + ';path=/';
+  }
+  function closePopup(hideDays){
+    document.getElementById('popupOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+    if(hideDays) setCookie('NO_popup_main', 'Y', hideDays);
+  }
+  window.addEventListener('DOMContentLoaded', () => {
+    if(getCookie('NO_popup_main') !== 'Y'){
+      setTimeout(() => {
+        document.getElementById('popupOverlay').classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }, 600);
+    }
+  });
+
+  // 히어로 키워드 로테이터
+  const heroKeywords = ['국내·해외 그린피 50%', '부킹성공률 95%', '주중주말OK'];
+  const heroKeywordEl = document.getElementById('heroKeyword');
+  if(heroKeywordEl){
+    let kwIndex = 0;
+    setInterval(() => {
+      heroKeywordEl.classList.add('fade');
+      setTimeout(() => {
+        kwIndex = (kwIndex + 1) % heroKeywords.length;
+        heroKeywordEl.textContent = heroKeywords[kwIndex];
+        heroKeywordEl.classList.remove('fade');
+      }, 300);
+    }, 1500);
+  }
+
+  // 유튜브 영상 캐러셀 (1개씩 노출 + 롤링)
+  const plkVideos = [
+    { id:'UqzbBgWy2ks', title:'2024년 퍼시픽링스코리아 소개' },
+    { id:'31l2nhmCMe8', title:'PLK 퍼시픽링스코리아 TV CF 영상' },
+    { id:'q981Rh6O70Y', title:'PLK CUP 수도권 포볼챔피언십' },
+    { id:'k52XTYByCgM', title:'PLK CUP Junior for AJGA' },
+    { id:'fXmGeJWYNGM', title:'PLK라운지 한정은프로 초청강연' },
+    { id:'rDh2iZ-NXP0', title:'PLK라운지 임진한프로 초청강연' },
+  ];
+  const track = document.getElementById('videoTrack');
+  const dotsWrap = document.getElementById('videoDots');
+  if(track){
+    let idx = 0;
+    let autoTimer = null;
+
+    track.innerHTML = plkVideos.map((v, i) => `
+      <div class="video-slide" data-i="${i}">
+        <img src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg" alt="${v.title}" loading="lazy" />
+        <div class="play" data-id="${v.id}">
+          <span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+        </div>
+        <div class="v-title">${v.title}</div>
+      </div>`).join('');
+
+    dotsWrap.innerHTML = plkVideos.map((_, i) =>
+      `<button data-i="${i}" aria-label="${i+1}번 영상"></button>`).join('');
+    const dots = [...dotsWrap.children];
+
+    function render(){
+      track.style.transform = `translateX(-${idx * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    }
+    function go(n){
+      idx = (n + plkVideos.length) % plkVideos.length;
+      render();
+    }
+    function startAuto(){
+      stopAuto();
+      autoTimer = setInterval(() => go(idx + 1), 5000);
+    }
+    function stopAuto(){ if(autoTimer){ clearInterval(autoTimer); autoTimer = null; } }
+
+    document.getElementById('videoPrev').addEventListener('click', () => { go(idx - 1); startAuto(); });
+    document.getElementById('videoNext').addEventListener('click', () => { go(idx + 1); startAuto(); });
+    dots.forEach(d => d.addEventListener('click', () => { go(+d.dataset.i); startAuto(); }));
+
+    // 재생 버튼 클릭 시 해당 슬라이드에 iframe 삽입 + 자동롤링 중지
+    track.querySelectorAll('.play').forEach(p => {
+      p.addEventListener('click', () => {
+        stopAuto();
+        const slide = p.closest('.video-slide');
+        const id = p.dataset.id;
+        slide.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?rel=0&autoplay=1"
+          title="PLK 영상" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>`;
+      });
+    });
+
+    render();
+    startAuto();
+  }
+
+  // 상단바 스크롤 효과
+  const topbar = document.getElementById('topbar');
+  window.addEventListener('scroll', () => {
+    topbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // 스크롤 reveal 애니메이션
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // 통계 숫자 카운트업(룰렛) 효과 — TL → TR → BL → BR, 2초 내 완료
+  (function(){
+    const grid = document.querySelector('.stats-grid');
+    if(!grid) return;
+    const nums = grid.querySelectorAll('.stat-num[data-count]');
+
+    // 초기값을 0으로 세팅 (나타나기 전)
+    nums.forEach(el => { el.textContent = '0' + (el.dataset.suffix || ''); });
+
+    // 매우 부드러운 감속 — easeOutExpo
+    const easeOutExpo = t => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
+
+    function animateNum(el, delay){
+      const target = parseInt(el.dataset.count, 10);
+      const suffix = el.dataset.suffix || '';
+      const duration = 1100; // ms
+      let startTime = null;
+      function step(now){
+        if(startTime === null) startTime = now;
+        const elapsed = now - startTime;
+        const p = Math.min(elapsed / duration, 1);
+        const eased = easeOutExpo(p);
+        const val = Math.round(target * eased);
+        el.textContent = val.toLocaleString('en-US') + suffix;
+        if(p < 1) requestAnimationFrame(step);
+        else el.textContent = target.toLocaleString('en-US') + suffix;
+      }
+      setTimeout(() => requestAnimationFrame(step), delay);
+    }
+
+    let played = false;
+    const statIo = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting && !played){
+          played = true;
+          const stagger = 180; // 각 숫자 시작 간격
+          nums.forEach((el, i) => animateNum(el, i * stagger));
+          statIo.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    statIo.observe(grid);
+  })();
+
+  // 라이트박스
+  function openLightbox(src){
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(e){
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // FAQ 아코디언
+  function toggleFaq(el){
+    const item = el.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  }
+
+  // FAQ 탭 전환
+  function switchFaqTab(btn, key){
+    document.querySelectorAll('.faq-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.faq-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelector('.faq-panel[data-faq="' + key + '"]').classList.add('active');
+  }
+</script>
+
+</body>
+</html>

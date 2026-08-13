@@ -1,0 +1,10 @@
+# 원본 자료(사진·명함 등) 공개 저장소에서 제외
+자료_원본/
+
+# 페이지에서 쓰지 않는 파일(이전 담당자 사진·명함 등) 제외
+01/name card.jpg
+01/Profile.png
+01/main1.jpg
+01/main2.jpg
+01/main3.jpg
+01/PACIFICLINKS CI_PLK로고.ai
