@@ -330,22 +330,12 @@
   }
   .profile-sms svg{ width:14px; height:14px; fill:#fff; }
   .profile-tel-num{ text-align:center; font-size:18px; font-weight:800; color:#fff; margin-top:14px; letter-spacing:1px; }
-  .namecard{ margin-top:18px; text-align:center; }
-  .namecard-label{ font-size:11px; letter-spacing:2px; font-weight:700; color:var(--gray); margin-bottom:10px; }
-  .namecard button{
-    display:block; width:100%; padding:0; background:none;
-    border-radius:16px; overflow:hidden;
-    box-shadow:0 8px 28px rgba(var(--navy-rgb),0.10);
-    transition:transform .15s ease;
-  }
-  .namecard button:active{ transform:scale(0.98); }
-  .namecard img{ width:100%; border-radius:16px; }
-  .namecard-hint{ font-size:11px; color:var(--gray); margin-top:8px; }
-  .namecard-mail{
+  .profile-mail-wrap{ margin-top:16px; text-align:center; }
+  .profile-mail{
     display:inline-flex; align-items:center; gap:6px;
-    margin-top:12px; font-size:13px; font-weight:700; color:var(--blue);
+    font-size:13px; font-weight:700; color:var(--blue);
   }
-  .namecard-mail svg{ width:15px; height:15px; fill:var(--blue); }
+  .profile-mail svg{ width:15px; height:15px; fill:var(--blue); }
 
   /* ============ REQUEST FORM (안내자료 받기) ============ */
   .request-card{
@@ -1149,13 +1139,8 @@
       </div>
     </div>
 
-    <div class="namecard reveal">
-      <div class="namecard-label">BUSINESS CARD</div>
-      <button onclick="openLightbox('01/name-card.jpg')" aria-label="양해영 본부장 명함 크게 보기">
-        <img src="01/name-card.jpg" alt="퍼시픽링스 코리아 울산지사 본부장 양해영 명함" loading="lazy" />
-      </button>
-      <div class="namecard-hint">이미지를 누르면 크게 볼 수 있습니다</div>
-      <a href="mailto:didgo7010@gmail.com" class="namecard-mail">
+    <div class="profile-mail-wrap reveal">
+      <a href="mailto:didgo7010@gmail.com" class="profile-mail">
         <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
         didgo7010@gmail.com
       </a>
