@@ -148,6 +148,17 @@
   .hero-agent-role{ font-size:10px; color:var(--blue-light); letter-spacing:1px; }
   .hero-agent-name{ font-size:13px; font-weight:800; color:#fff; }
   .hero-agent-tel{ color:var(--blue-light); text-decoration:none; font-weight:800; margin-left:6px; }
+  .hero-main-visual{
+    position:relative; z-index:1;
+    margin:30px auto 0; width:100%; max-width:300px;
+  }
+  .hero-main-visual img{
+    display:block; width:100%; max-height:42vh; height:auto;
+    object-fit:contain; margin:0 auto;
+    border-radius:16px;
+    border:1px solid rgba(255,255,255,0.14);
+    box-shadow:0 18px 44px rgba(0,0,0,0.45);
+  }
   @keyframes bounce{
     0%,100%{ transform:translate(-50%,0); opacity:.4; }
     50%{ transform:translate(-50%,6px); opacity:.9; }
@@ -689,6 +700,9 @@
       <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
       전화 상담
     </a>
+  </div>
+  <div class="hero-main-visual">
+    <img src="01/main1.jpg" alt="퍼시픽링스 코리아 멤버십 안내" loading="eager" />
   </div>
   <div class="hero-scroll">Scroll</div>
 </section>
