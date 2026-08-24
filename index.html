@@ -530,8 +530,8 @@
     color:#fff; font-size:18px; font-weight:300;
     display:flex; align-items:center; justify-content:center;
   }
-  /* 팝업은 모달 높이가 커지지 않게 프로필 카드보다 살짝 덜 세로로 */
-  .popup-img{ width:100%; aspect-ratio:9/10; object-fit:cover; object-position:center 25%; }
+  /* 포스터라 잘리면 안 되므로 원본 비율 그대로 노출 */
+  .popup-img{ display:block; width:100%; height:auto; }
   .popup-body{ padding:22px 22px 24px; }
   .popup-role{ font-size:11px; letter-spacing:2px; color:var(--blue-light); font-weight:700; margin-bottom:6px; text-transform:uppercase; }
   .popup-name{ font-size:20px; font-weight:900; margin-bottom:10px; letter-spacing:-0.5px; }
@@ -641,7 +641,7 @@
 <div class="popup-overlay" id="popupOverlay">
   <div class="popup-box">
     <div class="popup-close" onclick="closePopup()">&times;</div>
-    <img src="01/Profile2.jpg" alt="양해영 본부장" class="popup-img" />
+    <img src="01/main1.jpg" alt="퍼시픽링스 코리아 멤버십 안내" class="popup-img" />
     <div class="popup-body">
       <div class="popup-role">PacificLinks Korea</div>
       <div class="popup-name">본부장 양해영</div>
